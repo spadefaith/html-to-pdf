@@ -1,0 +1,10 @@
+{
+    "app": [
+      {
+        "script": "index.js",
+        "name": "html-to-pdf",
+        "exec_mode": "cluster"
+      }
+    ]
+  }
+  

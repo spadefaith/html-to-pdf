@@ -1,0 +1,14 @@
+version: "3"
+services:
+  app:
+    container_name: html-to-pdf
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9327:${PORT}"
+    volumes:
+      - .:/app
+    environment:
+      NODE_ENV: ${NODE_ENV}
+  # Add other services (e.g., a database service) if necessary
