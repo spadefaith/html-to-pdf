@@ -13,15 +13,14 @@ app.use(express.json());
 app.post('/generate', formidable(), async (req, res, next) => {
     try {
         const { html,name } = req.fields;
-        if (!html) {
-            return res.status(400).json({ message: 'html is required' });
-        }
+        if (!html) throw new Error('html is required')
         const generated = await pdfGenerate(html);
         readStream.end(generated);
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader("Content-Disposition", `attachment; filename=${name}.pdf`);
         readStream.pipe(res);
     } catch(err){
+        console.log(err);
         next(err);
     }
 });
