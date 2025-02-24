@@ -20,7 +20,6 @@ app.post('/generate', formidable(), async (req, res, next) => {
         res.setHeader("Content-Disposition", `attachment; filename=${name}.pdf`);
         readStream.pipe(res);
     } catch(err){
-        console.log(err);
         next(err);
     }
 });

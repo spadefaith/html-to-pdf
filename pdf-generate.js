@@ -1,9 +1,10 @@
+require('dotenv').config();
 const puppeteer = require("puppeteer");
 
 module.exports = async (html)=>{
     const browser = await puppeteer.launch({
         headless: true,
-        executablePath: "/snap/bin/chromium",
+        executablePath: process.env.CHROME_BIN,
         args: ["--no-sandbox", "--disabled-setupid-sandbox"],
     });
     const page = await browser.newPage();
