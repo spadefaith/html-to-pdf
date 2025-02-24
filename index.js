@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 const app = express();
 const formidable = require('express-formidable');
@@ -31,9 +31,9 @@ app.get('/', (req, res) => res.json({ message: 'Html to pdf API' }));
 app.use("*", (req, res) => res.json("404 Not Found"));
 app.use((err, req, res, next) => res.json({ message: err.message }));
 
-app.listen(process.env.PORT,'0.0.0.0',(err)=>{
+app.listen(3000,'0.0.0.0',(err)=>{
     if(err){
         console.log(err);
     }
-    console.log(`Server is running on port ${process.env.PORT}`);
+    console.log(`Server is running on port ${3000}`);
 });
