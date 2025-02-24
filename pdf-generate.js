@@ -1,7 +1,7 @@
 require('dotenv').config();
 const puppeteer = require("puppeteer");
 
-module.exports = async (html)=>{
+module.exports = async ({html,...rest})=>{
     const browser = await puppeteer.launch({
         headless: true,
         executablePath: process.env.CHROME_BIN,
@@ -9,7 +9,11 @@ module.exports = async (html)=>{
     });
     const page = await browser.newPage();
     await page.setContent(html);
-    const pdf = await page.pdf({ format: "A4",printBackground: true, });
+    const pdf = await page.pdf({ 
+        format: "A4",
+        printBackground: true,
+        ...(rest || {})
+    });
     await page.close();
 
     return pdf;

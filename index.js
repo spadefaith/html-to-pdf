@@ -12,9 +12,9 @@ app.use(express.json());
 
 app.post('/generate', formidable(), async (req, res, next) => {
     try {
-        const { html,name } = req.fields;
+        const { html } = req.fields;
         if (!html) throw new Error('html is required')
-        const generated = await pdfGenerate(html);
+        const generated = await pdfGenerate(req.fields);
         const readStream = new stream.PassThrough();
         readStream.end(generated);
         res.setHeader('Content-Type', 'application/pdf');
