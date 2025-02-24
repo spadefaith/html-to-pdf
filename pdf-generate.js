@@ -12,6 +12,5 @@ module.exports = async (html)=>{
     const pdf = await page.pdf({ format: "A4" });
     await page.close();
 
-    console.log(15,pdf);
     return pdf;
 }

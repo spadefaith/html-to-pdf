@@ -4,7 +4,7 @@ const app = express();
 const formidable = require('express-formidable');
 const pdfGenerate = require('./pdf-generate.js');
 const stream = require("stream");
-const readStream = new stream.PassThrough();
+
 
 
 app.use(express.json());
@@ -15,6 +15,7 @@ app.post('/generate', formidable(), async (req, res, next) => {
         const { html,name } = req.fields;
         if (!html) throw new Error('html is required')
         const generated = await pdfGenerate(html);
+        const readStream = new stream.PassThrough();
         readStream.end(generated);
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader("Content-Disposition", `attachment; filename=${name}.pdf`);
