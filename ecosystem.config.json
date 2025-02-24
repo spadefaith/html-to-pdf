@@ -3,8 +3,7 @@
       {
         "script": "npm run start",
         "interpreter": "none",
-        "name": "html-to-pdf",
-        "exec_mode": "cluster"
+        "name": "html-to-pdf"
       }
     ]
   }
