@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.post('/generate/json', formidable(), async (req, res, next) => {
     try {
-        const { html } = req.body;
+        const { html,name } = req.body;
         if (!html) throw new Error('html is required')
         const generated = await pdfGenerate(req.body);
         const readStream = new stream.PassThrough();
@@ -26,7 +26,7 @@ app.post('/generate/json', formidable(), async (req, res, next) => {
 
 app.post('/generate', formidable(), async (req, res, next) => {
     try {
-        const { html } = req.fields;
+        const { html,name } = req.fields;
         if (!html) throw new Error('html is required')
         const generated = await pdfGenerate(req.fields);
         const readStream = new stream.PassThrough();
@@ -42,7 +42,10 @@ app.post('/generate', formidable(), async (req, res, next) => {
 app.get('/', (req, res) => res.json({ message: 'Html to pdf API' }));
 
 app.use("*", (req, res) => res.json("404 Not Found"));
-app.use((err, req, res, next) => res.json({ message: err.message }));
+app.use((err, req, res, next) => {
+    console.log(err);
+    res.json({ message: err.message })
+});
 
 app.listen(process.env.PORT,'0.0.0.0',(err)=>{
     if(err){
