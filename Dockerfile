@@ -10,17 +10,8 @@ RUN npm install -g nodemon
 RUN npm install -g dotenv-cli
 RUN npm install
 
-RUN apk update && \
-    apk add --no-cache \
-    chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont
 
-ENV CHROME_BIN=/usr/bin/chromium-browser
-ENV CHROME_PATH=/usr/lib/chromium/
+ENV CHROME_BIN=/snap/bin/chromium
 
 COPY . .
 
