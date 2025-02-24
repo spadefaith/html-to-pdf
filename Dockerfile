@@ -3,7 +3,6 @@ FROM node:18.19.0-alpine
 
 RUN npm install -g pnpm
 RUN npm install -g nodemon
-RUN npm install dotenv
 
 RUN apk update && \
     apk add --no-cache \
@@ -20,8 +19,8 @@ ENV CHROME_PATH=/usr/lib/chromium/
 
 WORKDIR /app
 
-COPY package*.json pnpm-lock.yaml ./
-RUN pnpm install
+COPY package*.json ./
+RUN npm install
 
 COPY . .
 
