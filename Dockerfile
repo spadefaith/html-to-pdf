@@ -8,6 +8,7 @@ COPY . ./
 RUN npm install -g pnpm
 RUN npm install -g nodemon
 RUN npm install -g dotenv-cli
+RUN npm install
 
 RUN apk update && \
     apk add --no-cache \
@@ -20,10 +21,6 @@ RUN apk update && \
 
 ENV CHROME_BIN=/usr/bin/chromium-browser
 ENV CHROME_PATH=/usr/lib/chromium/
-
-
-
-RUN npm install
 
 COPY . .
 
