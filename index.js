@@ -9,7 +9,7 @@ const stream = require("stream");
 
 app.use(express.json());
 
-app.post('/generate/json', formidable(), async (req, res, next) => {
+app.post('/generate/json', async (req, res, next) => {
     try {
         const { html,name } = req.body;
         if (!html) throw new Error('html is required')
