@@ -9,7 +9,7 @@ module.exports = async (html)=>{
     });
     const page = await browser.newPage();
     await page.setContent(html);
-    const pdf = await page.pdf({ format: "A4" });
+    const pdf = await page.pdf({ format: "A4",printBackground: true, });
     await page.close();
 
     return pdf;
