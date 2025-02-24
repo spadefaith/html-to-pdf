@@ -9,6 +9,20 @@ const stream = require("stream");
 
 app.use(express.json());
 
+app.post('/generate/json', formidable(), async (req, res, next) => {
+    try {
+        const { html } = req.body;
+        if (!html) throw new Error('html is required')
+        const generated = await pdfGenerate(req.body);
+        const readStream = new stream.PassThrough();
+        readStream.end(generated);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader("Content-Disposition", `attachment; filename=${name}.pdf`);
+        readStream.pipe(res);
+    } catch(err){
+        next(err);
+    }
+});
 
 app.post('/generate', formidable(), async (req, res, next) => {
     try {
