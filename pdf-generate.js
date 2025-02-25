@@ -5,7 +5,12 @@ module.exports = async ({html,...rest})=>{
     const browser = await puppeteer.launch({
         headless: true,
         executablePath: process.env.CHROME_BIN,
-        args: ["--no-sandbox", "--disabled-setupid-sandbox"],
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-gpu',
+            '--disable-software-rasterizer'
+        ],
     });
     const page = await browser.newPage();
     await page.setContent(html);
