@@ -6,12 +6,11 @@ module.exports = async ({html,...rest})=>{
         headless: true,
         executablePath: process.env.CHROME_BIN,
         args: [
-            '--no-sandbox', 
-            '--disable-setuid-sandbox', 
-            '--disable-gpu', 
-            '--disable-software-rasterizer', 
-            '--remote-debugging-port=9222', 
-            '--disable-dev-shm-usage'
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-gpu',
+            '--disable-software-rasterizer',
+            '--remote-debugging-port=9223'  // Change the port number here
         ],
     });
     const page = await browser.newPage();
