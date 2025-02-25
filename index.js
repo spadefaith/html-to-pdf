@@ -44,7 +44,8 @@ app.get('/', (req, res) => res.json({ message: 'Html to pdf API' }));
 app.use("*", (req, res) => res.json("404 Not Found"));
 app.use((err, req, res, next) => {
     console.log(err);
-    res.json({ message: err.message })
+    
+    res.status(400).json({ message: err.message })
 });
 
 app.listen(process.env.PORT,'0.0.0.0',(err)=>{
